@@ -1,0 +1,67 @@
+body, html {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+	}
+
+	.board {
+		width: 100%;
+		height: 100%;
+		/*background: rgb(232, 184, 49);*/
+		background: teal;
+		/*box-shadow: 0 0 150px rgba(196, 146, 21, 1) inset;*/
+		position: relative;
+	}
+
+	.newnote {
+		position: fixed;
+		right: 5px;
+		top: 5px;
+		padding: 5px 10px;
+		outline: none;
+		font-weight: bold;
+		font-size: 22px;
+		z-index: 10;
+	}
+
+	.note {
+		position: absolute;
+/*		top: 30px;
+		left: 100px;*/
+		width: 200px;
+		height: 200px;
+		font: 16px Arial;
+		background: linear-gradient(rgb(216, 215, 85), rgb(250, 248, 45));
+		box-shadow: 5px 0 10px rgb(203, 160, 41);
+	}
+
+	.note:hover {
+		cursor: pointer;
+	}
+
+	.note div {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		padding: 5px;
+		box-sizing: border-box;
+		/*display: none;*/
+	}
+
+	.note textarea {
+		position: absolute;
+		width: 100%;
+		height: 80%;
+		resize: none;
+		box-sizing: border-box;
+		display: none;
+	}
+
+	.toup {
+		z-index: 100;
+	}
+
+	p {
+		border-bottom: 1px solid black;
+		margin-bottom: 10px;
+	}

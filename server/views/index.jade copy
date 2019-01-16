@@ -1,0 +1,24 @@
+doctype html
+html(lang='en')
+  head
+    title= title
+  body
+    h3 Jade - node template engine
+    #container.col
+      - var text = "Hi there"
+      p= text
+
+      - var check = false
+      if check
+        h4 Check is "true"
+      else
+        h4 Check is "false"
+
+      div You are amazing
+        each room in chatsArr
+          p #{room.name}
+            a(href='http://localhost:6060/delete/#{room.id}') Delete room
+      div You are amazing
+          - for (var i = 0; i < chatsArr.length; i++)
+              p= chatsArr[i].name
+                a(href='http://localhost:6060/delete/#{chatsArr[i].id}') Delete room

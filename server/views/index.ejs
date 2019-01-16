@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html>
+	
+<head>
+	<title>
+		<%= title %>
+	</title>
+
+<style type="text/css">
+
+	body, html {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+	}
+
+	.board {
+		width: 100%;
+		height: 100%;
+		/*background: rgb(232, 184, 49);*/
+		background: teal;
+		/*box-shadow: 0 0 150px rgba(196, 146, 21, 1) inset;*/
+		position: relative;
+	}
+
+	.newnote {
+		position: fixed;
+		right: 5px;
+		top: 5px;
+		padding: 5px 10px;
+		outline: none;
+		font-weight: bold;
+		font-size: 22px;
+		z-index: 10;
+	}
+
+	.note {
+		position: absolute;
+/*		top: 30px;
+		left: 100px;*/
+		width: 200px;
+		height: 200px;
+		font: 16px Arial;
+		background: linear-gradient(rgb(216, 215, 85), rgb(250, 248, 45));
+		box-shadow: 5px 0 10px rgb(203, 160, 41);
+	}
+
+	.note:hover {
+		cursor: pointer;
+	}
+
+	.note div {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		padding: 5px;
+		box-sizing: border-box;
+		/*display: none;*/
+	}
+
+	.note textarea {
+		position: absolute;
+		width: 100%;
+		height: 80%;
+		resize: none;
+		box-sizing: border-box;
+		display: none;
+	}
+
+	.toup {
+		z-index: 100;
+	}
+
+	p {
+		border-bottom: 1px solid black;
+		margin-bottom: 10px;
+	}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+<button id="newnote" class="newnote">+</button>
+<div id="board" class="board">
+
+
+	
+<form method="post" action="/apipost">
+	<input type="text" name="chatname">
+	<button type="submit">Send data</button>
+</form>
+
+<div id="chats">
+	<% if(chatsArr) { %> 
+		<% for(var i = 0; i < chatsArr.length; i++) { %>
+			<p><%= chatsArr[i].name %>
+				<a href="<%= "http://localhost:6060/delete/"+chatsArr[i].id %>">Delete room</a>
+			</p>
+		<% } %>
+	<% } %>	
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+
+function start(){
+
+	let divChats = document.getElementById("chats");
+	let form = document.querySelector("form");
+	let input = document.querySelector("input");
+
+	function getData(){
+		let req = new XMLHttpRequest();
+		req.onload = () => {
+			console.log(req.response);
+			createChats(req.response.chats);
+		}
+		req.open("GET", "http://localhost:6060/api", true);
+		req.responseType = "json";
+		req.send();
+	}
+
+	function sendData(data, method){
+		let req = new XMLHttpRequest();
+		req.onload = () => {
+			console.log(req.response);
+			createChats(req.response.chats);
+		}
+		req.open(method, "http://localhost:6060/api", true);
+		req.responseType = "json";
+		req.setRequestHeader("Content-Type", "application/json");
+		req.send(data);
+	}
+
+
+
+	function createChats(arr){
+		divChats.innerHTML = "";
+		arr.map( (item, index) => {
+			let p = document.createElement("p");
+			p.ondblclick = () => {
+				sendData(JSON.stringify(item), "DELETE");
+			}
+			p.textContent = item.name;
+			divChats.appendChild(p);
+		} );
+	}
+
+	form.onsubmit = e => {
+		e.preventDefault();
+		let obj = {name: input.value};
+		sendData(JSON.stringify(data), "POST");
+
+	}
+
+
+
+
+	getData();
+	
+}
+
+// start();
+
+// let board = document.getElementById("board");
+// let addBtn = document.getElementById("newnote");
+
+
+
+</script>
+	
+</body>
+
+</html>
+
+
+
+

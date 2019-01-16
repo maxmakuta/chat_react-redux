@@ -1,0 +1,23 @@
+{
+  "name": "30.04.18",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "jade": "^1.11.0",
+    "jwt-simple": "^0.5.1",
+    "node-uuid": "^1.4.8",
+    "nodemon": "^1.17.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node node_modules/webpack/bin/webpack -w"
+  },
+  "author": "",
+  "license": "ISC"
+}

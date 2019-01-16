@@ -1,0 +1,20 @@
+{
+  "chats": [
+    {
+      "name": "Room 3",
+      "id": "8618528d-f739-4dd7-9be2-aa2fa0c9642a"
+    },
+    {
+      "name": "room 4",
+      "id": "b1370f6f-5af5-42f0-88e1-d71485053a71"
+    },
+    {
+      "name": "room 5",
+      "id": "099d2fc9-198f-4d5f-86fb-4e8f86526ea7"
+    },
+    {
+      "name": "Cool frontend room",
+      "id": "deeda653-ffc2-4a61-81a4-f8419f52a740"
+    }
+  ]
+}
